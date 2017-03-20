@@ -2,7 +2,7 @@
 * @Author: liumingren
 * @Date:   2015-08-20 10:21:21
 * @Last Modified by:   liumingren
-* @Last Modified time: 2017-03-20 10:25:09
+* @Last Modified time: 2017-03-20 10:28:03
 */
 
 'use strict';
@@ -10,7 +10,7 @@
  * [简单模板方法，用来组装字符串 liumingren]
  * 仅替换，可用来替换变量生成字符串。未加入常见的each等操作，后续可使用流行的模板引擎
  * @param {string} 模板 表达式格式为{{key}},也可以直接进行简单运算 如 {{(key1 + key2) * key3}}
- *          {{key|to [A] B}} 当有比较字符串A时，比较key是否等于A，是则返回B，无A时，判断是否有key的数据,如{{title|to on}},有title值时返回on
+ *                 筛选器 {{key|to [A] B}} 当有比较字符串A时，比较key是否等于A，是则返回B，无A时，判断是否有key的数据,如{{title|to on}},有title值时返回on
  * @param {object|array} 替换的对象数据 格式为 (模板:值),多个放在数组里，多个可做each使用,{{INDEX}}为下标
  * @return {string} 替换后的htmlString
  */
@@ -38,7 +38,6 @@ function format(){
                     v = filter[s[0]](q,s.slice(1),o);
                 }
             });
-            // if(!o[n]) n = n.replace(/\-hover|\-active/g,"");
             if(!v) v = n === 'INDEX' ? i : op.test(n) ? opp(o,n) : o[n];
             return v === undefined ? m : ($.isFunction(v) ? v.call(o, n) : v)
         }));
