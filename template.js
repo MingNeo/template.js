@@ -2,7 +2,7 @@
 * @Author: liumingren
 * @Date:   2015-08-20 10:21:21
 * @Last Modified by:   liumingren
-* @Last Modified time: 2017-03-20 14:03:49
+* @Last Modified time: 2017-03-20 14:24:14
 */
 
 'use strict';
@@ -16,7 +16,7 @@
  */
 function format(){
     var args = [].slice.call(arguments),str = String(args.shift() || ""), ar = [], first = args[0];
-    args = Array.isArray(first) ? first : typeof(first) == 'object' ? args : [args];
+    args = Array.isArray(first) ? first : typeof(first) == "object" ? args : [args];
     var filter = {
             to : function (q,d,o) {
                 return d.length > 1 ? o[q] === d[0] ? d[1] : void 0 : o[q] ? d[0] : void 0;
@@ -38,9 +38,9 @@ function format(){
                     v = filter[s[0]](q,s.slice(1),o);
                 }
             });
-            if(!v) v = n === 'INDEX' ? i : op.test(n) ? opp(o,n) : o[n];
+            if(!v) v = n === "INDEX" ? i : op.test(n) ? opp(o,n) : o[n];
             return v === undefined ? m : (typeof v === "function" ? v.call(o, n) : v)
         }));
     });
-    return ar.join('');
+    return ar.join("");
 };
